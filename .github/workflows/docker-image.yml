@@ -16,8 +16,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build -t Sightings:latest .
+      run: docker build -t sightings:latest .
     - name: push image to docker hub
       run:
        docker login -u abdelkarimachlaih -p ${{secrets.DOCKER_HUB_SECRECT}}
-       docker push Sightings:latest
+       docker push sightings:latest
