@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build --t Sightings:$(date +%s)
+    - name: push image to docker hub
+      run:
+       docker login -u abdelkarimachlaih -p ${{secrets.DOCKER_HUB_SECRECT}}
+       docker push Sightings:$(date +%s)
